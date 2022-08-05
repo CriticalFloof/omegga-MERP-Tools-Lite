@@ -146,6 +146,7 @@ export declare type IPlayerPositions = {
 export declare type ILogMinigame = {
 	name: string;
 	ruleset: string;
+	index: number;
 	members: OmeggaPlayer[];
 	teams: {
 		name: string;
@@ -956,6 +957,13 @@ export interface MockEventEmitter {
 	}) => void): this;
 	on(event: "autorestart", listener: (config: AutoRestartConfig) => void): this;
 	on(event: "interact", listener: (interaction: BrickInteraction) => void): this;
+	on(event: "minigamejoin", listener: (info: {
+		player: {
+			name: string;
+			id: string;
+		};
+		minigameName: string;
+	}) => void): this;
 }
 export interface OmeggaLike extends OmeggaCore, LogWrangling, InjectedCommands, MockEventEmitter {
 	writeln(line: string): void;
